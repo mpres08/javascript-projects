@@ -1,13 +1,27 @@
 //Define three variables for the LaunchCode shuttle - one for the starting fuel level, another for the number of astronauts aboard, and the third for the altitude the shuttle reaches.
-
-
+let startingFuel;
+let astronautsAboard;
+let maxAltitude;
 
 
 
 /*Exercise #4: Construct while loops to do the following:
   a. Query the user for the starting fuel level. Validate that the user enters a positive, integer value greater than 5000 but less than 30000. */
+  const input = require("readline-sync");
+  startingFuel = input.question("Enter the starting fuel level: ");
+
+let numStartingFuel = startingFuel
 
 
+
+  while (startingFuel < 5000 || startingFuel > 30000 || isNaN(startingFuel)) {
+    fuelLevel = input.question("Enter the starting fuel level: ");
+    numStartingFuel = Number(startingFuel);
+  }
+
+while (astronautsAboard <=1 || astronautsAboard >= 7) {
+  astronautsAboard = input.question("Please enter the number astronauts aboard: ");
+}
 
 
 

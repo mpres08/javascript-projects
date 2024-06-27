@@ -22,16 +22,20 @@ console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 
 function makeRectangle(width, height) {
     let rectangle = "";
-
     for (let i = 0; i < height; i++) {
         rectangle += makeLine(width) + "\n";
     }
-    return rectangle;
+    return rectangle.slice(0, -1);
 }
 console.log(makeRectangle(5, 3));
 
 console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 
 function makeDownwardStairs(height) {
-    
+    let downwardStairs = "";
+    for (let i = 0; i < height; i++) {
+        downwardStairs += makeLine(i+1) + "\n";
+    }
+    return downwardStairs.slice(0, -1);
 }
+console.log(makeDownwardStairs(5));

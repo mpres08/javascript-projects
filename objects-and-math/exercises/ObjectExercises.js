@@ -57,14 +57,26 @@ let crew = [superChimpOne, salamander, superChimpTwo, dog, waterBear];
 
 function crewReports() {
    for (property in crew) { 
-      console.log(`${crew[property].name} is a ${crew[property].species}. They are ${crew[property].age} years old and ${crew[property].weight} kilograms. Their ID is ${crew[property].astronautID}.`);
+      console.log(`${crew[property].name} is a ${crew[property].species}. They are ${crew[property].age} years old and ${crew[property].mass} kilograms. Their ID is ${crew[property].astronautID}.`);
    }
 }
 crewReports();
 
-function fitnessTest(arr) {
-   
+function fitnessTest(candidates) {
+   let results = [], numSteps, turns;
+   for (let i = 0; i < candidates.length; i++){
+      numSteps = 0;
+      turns = 0;
+   while(numSteps < 20){
+      numSteps += candidates[i].move();
+      turns++;
+   }
+   results.push(`${candidates[i].name} took ${turns} turns to take 20 steps.`);
+   }
+   return results;
 }
+
+console.log(fitnessTest(crew));
 // After you have created the other object literals, add the astronautID property to each one.
 
 // Add a move method to each animal object

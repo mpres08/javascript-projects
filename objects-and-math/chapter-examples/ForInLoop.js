@@ -6,4 +6,12 @@ let tortoiseOne = {
    diet: ["pumpkins", "lettuce", "cabbage"]
 };
 
+let tortoiseOneReverse = {
+
+}
 // Using a for..in loop, iterate through each property in the tortoiseOne object and print the value to the console.
+
+for (item in tortoiseOne) {
+   tortoiseOneReverse[tortoiseOne[item]] = item;
+}
+console.log(tortoiseOneReverse);

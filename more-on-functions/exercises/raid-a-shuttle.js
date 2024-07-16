@@ -24,21 +24,39 @@ let cargoHold = ['meal kits', 'space suits', 'first-aid kit', 'satellite', 'gold
 console.log("Fuel level: " + checkFuel(fuelLevel));
 console.log("Hold status: " + holdStatus(cargoHold));
 
+let stolenCargo = [];
+let stolenFuel = 0;
+let notSuspiciousFunction = function() {
+  if ((fuelLevel > 100001) || (fuelLevel > 50001)) {
+    fuelLevel = fuelLevel - 100
+    stolenFuel = stolenFuel + 100
+    notSuspiciousFunction();
+  }
+  stolenCargo.push(stolenFuel);
+  return stolenFuel;
+}
+
+let notStealingCargo = function() {
+  stolenItems = cargoHold.splice(4, 1).concat(cargoHold.splice(5, 1))
+  cargoHold.push("fools gold", "transistor radio");
+  stolenCargo.push(stolenItems);
+  return stolenItems;
+}
+
+function irs() {
+  console.log(`Siphoned ${notSuspiciousFunction()} kg of fuel from the tanks and stole ${notStealingCargo()[0]} and ${notStealingCargo()[1]} from the cargo hold.`);
+}
+irs();
+
+console.log(stolenItems);
+console.log(cargoHold);
+console.log(stolenCargo);
+console.log(notStealingCargo());
 /* Steal some fuel from the shuttle:
  */
  
 //a). Define an anonymous function and set it equal to a variable with a normal, non-suspicious name. The function takes one parameter. This will be the fuel level on the shuttle.
 
-let notSuspiciousFunction = function(a) {
-  if (checkFuel(a) === "green") {
-      return a - 100001;
-  } else if (checkFuel(a) === "yellow") {
-    return a - 50001;
-  } else {
-    return a;
-  }
-}
-console.log(notSuspiciousFunction(99999))
 //b). You must siphon off fuel without alerting the TAs. Inside your function, you want to reduce the fuel level as much as possible WITHOUT changing the color returned by the checkFuel function.
 
 //c). Once you figure out how much fuel to pump out, return that value.
@@ -50,29 +68,14 @@ console.log(notSuspiciousFunction(99999))
 
 //a). Define another anonymous function with an array as a parameter, and set it equal to another innocent variable.
 
-let notStealingCargo = function(cargo) {
-  let stolenCargo = cargo.splice(4, 1).concat(cargo.splice(5, 1))
-  cargoHold.push("fools gold", "transistor radio");
-  return stolenCargo;
-}
-console.log(notStealingCargo(cargoHold));
-console.log(cargoHold);
-
 //b). You need to swipe two items from the cargo hold. Choose well. Stealing water ain’t gonna get us rich. Put the swag into a new array and return it from the function.
 
 //c). The cargo hold has better security than the fuel tanks. It counts how many things are in storage. You need to replace what you steal with something worthless. The count MUST stay the same, or you’ll get caught and thrown into the LaunchCode brig.
 
 //d). Don’t get hasty, matey! Remember to test your function.
 
-/* Finally, you need to print a receipt for the accountant. Don’t laugh! That genius knows MATH and saves us more gold than you can imagine.
- */
+// Finally, you need to print a receipt for the accountant. Don’t laugh! That genius knows MATH and saves us more gold than you can imagine.
 
-function irs(levelOfFuel, itemsInCargo) {
-  notSuspiciousFunction()
-  notStealingCargo();
-  return (`Raided ${notSuspiciousFunction(fuelLevel)} from the tanks, and stole ${stolenCargo[0]} and ${stolenCargo[1]} from the cargo hold.`);
-}
-console.log(irs(fuelLevel, cargoHold));
 //a). Define a function called irs that can take fuelLevel and cargoHold as arguments.
 	
 //b). Call your anonymous fuel and cargo functions from within irs.

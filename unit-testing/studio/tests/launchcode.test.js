@@ -1,48 +1,60 @@
 // launchcode.test.js code:
 const launchcode = require('../index.js');
 
-describe("Testing launchcode", function(){
+describe("The launchcode object", function(){
 
-  test("checks value of organziation", function() {
-    expect(launchcode.organization).toBe("nonprofit");
+  test("should have a property called 'organization'", function() {
+    expect(launchcode.organization).toEqual("nonprofit");
   });
   
-  test("checks value of executive director", function() {
-    expect(launchcode.executiveDirector).toBe("Jeff")
+  test("should have a property called 'executiveDirector'", function() {
+    expect(launchcode.executiveDirector).toEqual("Jeff")
   });
 
-  test("checks value of percentage of cool employees", function() {
-    expect(launchcode.percentageCoolEmployees).toBe(100);
+  test("should have a property called 'percentageCoolEmployees'", function() {
+    expect(launchcode.percentageCoolEmployees).toEqual(100);
   });
 
-  test("checks value of programs offered", function() {
+  test("should have a property called programsOffered with 3 programs", function() {
     let programsArray = launchcode.programsOffered
-    expect(programsArray[0]).toBe("Web Development");
-    expect(programsArray[1]).toBe("Data Analysis");
-    expect(programsArray[2]).toBe("Liftoff");
-    expect(programsArray.length).toBe(3);
+    expect(programsArray[0]).toEqual("Web Development");
+    expect(programsArray[1]).toEqual("Data Analysis");
+    expect(programsArray[2]).toEqual("Liftoff");
+    expect(programsArray.length).toEqual(3);
   });
 
-  test("checks if launchOutput() is divisble by 2", function() { 
-    expect(launchcode.method(num)).toBe("Launch!");
-  });
+  describe("should have a method called 'launchOutput,' which,", function () {
+    
+    test("should return 'Launch!' for numbers evenly divisible by 2", function() { 
+      expect(launchcode.launchOutput(2)).toEqual("Launch!");
+    });
+  
+    test("should return 'Code!' for numbers evenly divisible by 3", function() {
+      expect(launchcode.launchOutput(3)).toEqual("Code!");
+    });
+  
+    test("should return 'Rocks!' for numbers evenly divisible by 5", function() {
+      expect(launchcode.launchOutput(5)).toEqual("Rocks!");
+    });
 
+    test("should return 'LaunchCode!' for numbers evenly divisible by both 2 and 3", function() {
+      expect(launchcode.launchOutput(6)).toEqual("LaunchCode!");
+    });
 
-  test("checks if launchOutput() is ONLY divisble by 3", function() {
-    expect(launchcode.method(3)).toBe("Code!");
-  });
+    test("should return 'Code Rocks!' for numbers evenly divisible by both 3 and 5", function() {
+      expect(launchcode.launchOutput(15)).toEqual("Code Rocks!");
+    });
 
-  test("checks if launchOutput() is ONLY divisble by 5", function() {
-    expect(launchcode.method(5)).toBe("Rocks!");
-  });
+    test("should return 'Launch Rocks! (CRASH!!!!)' for numbers evenly divisible by both 2 and 5", function() {
+      expect(launchcode.launchOutput(10)).toEqual("Launch Rocks! (CRASH!!!!)");
+    });
 
-  /*
-  test("checks if launchOutput() is divisble by 2", function() {
-    expect(launchcode.percentageCoolEmployees).toBe(100);
-  });
+    test("should return 'LaunchCode Rocks!' for numbers evenly divisible by both 2, 3, and 5", function() {
+      expect(launchcode.launchOutput(30)).toEqual("LaunchCode Rocks!");
+    });
 
-  test("checks if launchOutput() is divisble by 2", function() {
-    expect(launchcode.percentageCoolEmployees).toBe(100);
+    test("should return 'Rutabagas! That doesn't work.' for numbers NOT evenly divisible by both 2, 3, or 5", function() {
+      expect(launchcode.launchOutput(7)).toEqual("Rutabagas! That doesn't work.");
+    });
   });
-  */
 });
